@@ -1,0 +1,36 @@
+
+services:
+  724-bdd:
+    container_name: 724-bdd
+    image: 'mongo'
+    volumes: 
+      - data:/data/db
+    env_file: 
+      - ./env/mongo.env
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  724-backend:
+    container_name: 724-back
+    image: 724back
+    ports:
+      - '8080:8080'
+    env_file: 
+      - ./env/backend.env
+    depends_on:
+      724-bdd:
+        condition: service_healthy
+
+  724-frontend:
+    container_name: 724-front
+    image: 724front
+    ports: 
+      - '3000:80'
+
+volumes: 
+  data:
+
