@@ -1,7 +1,7 @@
 
 services:
   724-bdd:
-    container_name: 724-bdd
+    container_name: 724-Events-bdd
     image: 'mongo'
     volumes: 
       - data:/data/db
@@ -15,8 +15,8 @@ services:
       start_period: 30s
 
   724-backend:
-    container_name: 724-back
-    image: 724back
+    container_name: 724-Events-back
+    image: ghcr.io/oc-for-students/724-events-backend:2-0-0
     ports:
       - '8080:8080'
     env_file: 
@@ -26,8 +26,8 @@ services:
         condition: service_healthy
 
   724-frontend:
-    container_name: 724-front
-    image: 724front
+    container_name: 724-Events-front
+    image: ghcr.io/oc-for-students/724-events-frontend:2-0-0
     ports: 
       - '3000:80'
 
