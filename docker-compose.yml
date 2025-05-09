@@ -1,4 +1,3 @@
-
 services:
   724-bdd:
     container_name: 724-Events-bdd
@@ -16,7 +15,7 @@ services:
 
   724-backend:
     container_name: 724-Events-back
-    image: ghcr.io/oc-for-students/724-events-backend:2-0-0
+    image: ghcr.io/openclassrooms-student-center/724-events-backend:2-0-0
     ports:
       - '8080:8080'
     env_file: 
@@ -27,7 +26,7 @@ services:
 
   724-frontend:
     container_name: 724-Events-front
-    image: ghcr.io/oc-for-students/724-events-frontend:2-0-0
+    image: ghcr.io/openclassrooms-student-center/724-events-frontend:2-0-0
     ports: 
       - '3000:80'
 
